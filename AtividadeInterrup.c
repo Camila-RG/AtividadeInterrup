@@ -10,12 +10,11 @@
 #define IS_RGBW false
 #define NUM_PIXELS 25
 #define WS2812_PIN 7
-#define tempo 400
 
 // Variáveis globais para armazenar a cor (Entre 0 e 255 para intensidade)
 uint8_t led_r = 0;
 uint8_t led_g = 0;
-uint8_t led_b = 200;
+uint8_t led_b = 50;
 
 // Definição dos pinos dos leds e botões
 #define LED_G_PIN 11
