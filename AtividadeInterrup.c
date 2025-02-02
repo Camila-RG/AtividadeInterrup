@@ -153,6 +153,7 @@ int main() {
     gpio_set_irq_enabled_with_callback(BUTTON_B_PIN, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
 
     while (true) {
+        
         blink_red();
         exibir_numero(numeros[numero_atual]); // Exibindo número
     }
