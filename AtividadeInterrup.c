@@ -52,3 +52,11 @@ void inicializacaocomponentes() {
     gpio_set_dir(BUTTON_B_PIN, GPIO_IN);
     gpio_pull_up(BUTTON_B_PIN);
 }
+
+int main()
+{
+    while (true){
+    }
+    
+    return 0;
+}
