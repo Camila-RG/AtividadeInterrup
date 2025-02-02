@@ -34,6 +34,7 @@ O projeto consiste em um contador interativo, utilizando um LED RGB, uma matriz 
 - **C**
 
 ## Passo a Passo da Implementação
+Abaixo encontra-se o resumo dos passos que foram realizados para realização da atividade.
 ### 1. Configuração do Ambiente
 1. Foi configurado no vscode o ambiente para realização da atividade.
 2. O Wokwi foi configurado para simular o RP2040 com os componentes mencionados.
