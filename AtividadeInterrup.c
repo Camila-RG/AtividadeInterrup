@@ -13,9 +13,9 @@
 #define tempo 400
 
 // Variáveis globais para armazenar a cor (Entre 0 e 255 para intensidade)
-uint8_t led_r = 0; // Intensidade do vermelho
-uint8_t led_g = 0; // Intensidade do verde
-uint8_t led_b = 200; // Intensidade do azul
+uint8_t led_r = 0;
+uint8_t led_g = 0;
+uint8_t led_b = 200;
 
 // Definição dos pinos dos leds e botões
 #define LED_G_PIN 11
