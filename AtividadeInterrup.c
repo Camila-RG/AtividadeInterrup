@@ -1,10 +1,10 @@
+// Bibliotecas necessárias para funcionamento
 #include <stdio.h>
 #include <stdlib.h>
 #include "pico/stdlib.h"
 #include "hardware/pio.h"
 #include "hardware/clocks.h"
 #include "ws2812.pio.h"
-// Bibliotecas necessárias para funcionamento
 
 // Definição de constantes da matriz de leds
 #define IS_RGBW false
@@ -85,7 +85,6 @@ void set_one_led(uint8_t r, uint8_t g, uint8_t b, int numero) {
 
     uint32_t color = urgb_u32(r, g, b); // Define a cor
 
-    // Define todos os LEDs com a cor especificada
     for (int i = 0; i < NUM_PIXELS; i++) {
         if (led_buffer[numero][i]) {
             put_pixel(color); // Liga os LEDs
@@ -127,4 +126,25 @@ int main()
     }
 
     return 0;
+}
+
+
+static volatile uint a = 1;
+static volatile uint32_t last_time = 0;
+
+ // Interrupção dos botões com debouncing
+static void gpio_irq_handler(uint gpio, uint32_t events)
+{
+    uint32_t current_time = to_us_since_boot(get_absolute_time());
+
+    if (gpio == BUTTON_A_PIN && current_time - last_interrupt_time_a > 300000){ //Tempo de Debounce: 300 ms
+        last_interrupt_time_a = current_time;
+        numero_atual = (numero_atual + 1) % 10; // Incrementa com rolação entre 0-9
+        printf("Número exibido: %d\n", numero_atual);
+    }
+    else if (gpio == BUTTON_B_PIN && current_time - last_interrupt_time_b > 300000) { //Tempo de Debounce: 300 ms
+        last_interrupt_time_b = current_time;
+        numero_atual = (numero_atual - 1 + 10) % 10; // Decrementa com rolação entre 0-9
+        printf("Número exibido: %d\n", numero_atual);
+    }
 }
