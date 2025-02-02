@@ -68,10 +68,63 @@ bool led_buffer[10][NUM_PIXELS] = {
     {1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1}, // Número 9
 };
 
+// Função para enviar dados para o LED WS2812
+static inline void put_pixel(uint32_t pixel_grb)
+{
+    pio_sm_put_blocking(pio0, 0, pixel_grb << 8u);
+}
+
+// Função para converter valores RGB em um único valor de 32 bits no formato GRB
+static inline uint32_t urgb_u32(uint8_t r, uint8_t g, uint8_t b)
+{
+    return ((uint32_t)(r) << 8) | ((uint32_t)(g) << 16) | (uint32_t)(b);
+}
+
+// Função para acender um número específico na matriz de LEDs
+void set_one_led(uint8_t r, uint8_t g, uint8_t b, int numero) {
+
+    uint32_t color = urgb_u32(r, g, b); // Define a cor
+
+    // Define todos os LEDs com a cor especificada
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        if (led_buffer[numero][i]) {
+            put_pixel(color); // Liga os LEDs
+        } else {
+            put_pixel(0);  // Desliga os LEDs
+        }
+    }
+}
+
+// Função para piscar o LED vermelho 5 vezes por segundo, pois essa ação de blinkar durará 200ms, ou seja, isso se repetirá 5 vezes em 1 segundo.
+void blink_red() {
+    gpio_put(LED_R_PIN, 1);
+    sleep_ms(100);
+    gpio_put(LED_R_PIN, 0);
+    sleep_ms(100);
+}
+
+// Protótipo de função da interrução
+static void gpio_irq_handler(uint gpio, uint32_t events);
+
+//Função principal
 int main()
 {
-    while (true){
+    PIO pio = pio0;
+    int sm = 0;
+    uint offset = pio_add_program(pio, &ws2812_program);
+    inicializacaocomponentes();
+    ws2812_program_init(pio, sm, offset, WS2812_PIN, 800000, IS_RGBW);
+
+    // Configura interrupções para os botões
+    gpio_set_irq_enabled_with_callback(BUTTON_A_PIN, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
+    gpio_set_irq_enabled_with_callback(BUTTON_B_PIN, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
+
+    // Rotina ou Loop principal
+    while (true)
+    {
+        blink_red(); //Pisca o led de forma contínua, de maneira que pisca 5 vezes por segundo
+        set_one_led(led_r, led_g, led_b, numero_atual); // Passa o número atual para exibir
     }
-    
+
     return 0;
 }
