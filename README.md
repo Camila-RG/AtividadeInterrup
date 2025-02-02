@@ -1,7 +1,7 @@
 # Projeto de Interrupções e Controle de LEDs
 
 ## Descrição
-Este repositório apresenta a resolução da atividade da U4 do EmbarcaTech - da aula 27/01/2025 - visando consolidar o entendimento dos conceitos relacionados ao uso de interrupções no microcontrolador RP2040 e funcionalidades do kit do BitDogLab.
+Este repositório apresenta a resolução da atividade da U4 do EmbarcaTech - da aula 27/01/2025 - que teve como objetivo a aplicação dos conhecimentos obtidoos nas aulas síncronas e assíncronas sobre o uso de interrupções no microcontrolador RP2040, debouncing e uso de funcionalidades do kit do BitDogLab.
 
 O projeto consiste em um contador interativo, utilizando um LED RGB, uma matriz de LEDs WS2812 e dois botões para interação do usuário. 
 
