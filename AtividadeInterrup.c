@@ -14,7 +14,7 @@
 // Variáveis globais para armazenar a cor (Entre 0 e 255 para intensidade)
 uint8_t led_r = 0;
 uint8_t led_g = 0;
-uint8_t led_b = 100;
+uint8_t led_b = 200;
 
 // Definição dos pinos dos leds e botões
 #define LED_G_PIN 11
