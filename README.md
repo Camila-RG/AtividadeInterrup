@@ -68,6 +68,6 @@ Os botões mecânicos sofrem com o efeito de bouncing, onde um único pressionam
 - **Camila Ramos Gomes**
 
 ## Vídeo Explicativo
-(https://drive.google.com/file/d/16WYrqCkzyton03fe6SF8bFIbzTNc0sq5/view?usp=sharing)
+[Vídeo Explicativo do Projeto](https://drive.google.com/file/d/16WYrqCkzyton03fe6SF8bFIbzTNc0sq5/view?usp=sharing)
 
 **LEMBRETE:** Ao clonar o repositório certifique-se de ter o sdk da raspberry pi pico w para importar o projeto da maneira correta.
